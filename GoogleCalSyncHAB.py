@@ -15,6 +15,7 @@ import os.path
 import Settings as S
 import requests
 import json
+import time
 import dateutil.parser as dateparser
 from urllib import request, parse
 from googleapiclient.discovery import build
@@ -100,6 +101,7 @@ def main():
             sendEventToOpenHAB(index+1, event)
         else:
             sendEventToOpenHAB(index+1, {})
+        time.sleep(2)
 
 if __name__ == '__main__':
     main()
