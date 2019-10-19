@@ -72,7 +72,7 @@ def main():
 
     # Call the Calendar API
     now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
-    print('Getting the upcoming 10 events')
+    # print('Getting the upcoming 10 events')
 
     RetrievedEvents = []
     for calendarId in S.CalendarIds:
@@ -90,14 +90,13 @@ def main():
     RetrievedEvents.sort(key=lambda x: float(x['timestamp']), reverse=False)
 
     if not RetrievedEvents:
-        print('No upcoming events found.')
+        # print('No upcoming events found.')
         exit()
 
     for index in range(int(S.CalendarMaxEvents)):
         if index < len(RetrievedEvents):
             event = RetrievedEvents[index]
             start = event['start'].get('dateTime')
-            # print(event['timestamp'], start, event['summary'])
             sendEventToOpenHAB(index+1, event)
         else:
             sendEventToOpenHAB(index+1, {})
