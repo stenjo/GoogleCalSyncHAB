@@ -101,7 +101,7 @@ def main():
             sendEventToOpenHAB(index+1, event)
         else:
             sendEventToOpenHAB(index+1, {})
-        time.sleep(2)
+        time.sleep(1)
 
 if __name__ == '__main__':
     main()
