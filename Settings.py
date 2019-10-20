@@ -21,6 +21,7 @@ CalendarIds = Settings.get('Calendar', 'CalendarId').split(',')
 CalendarMaxEvents = Settings.get('Calendar', 'MaxEvents')
 CalendarTimeZone = Settings.get('Calendar', 'TimeZone')
 CalendarClientSecretFile = Settings.get('Calendar', 'ClientSecretFile')
+StringLengthLimit = int(Settings.get('Calendar', 'StringLengthLimit'))
 
 OpenHABHostName = Settings.get('OpenHAB', 'HostName')
 OpenHABPort = Settings.get('OpenHAB', 'Port')

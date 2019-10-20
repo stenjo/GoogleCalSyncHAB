@@ -29,16 +29,18 @@ def sendEventToOpenHAB(index, event):
     EventStart = dateparser.parse(event['start'].get('dateTime', event['start'].get('date')))
     EventEnd = dateparser.parse(event['end'].get('dateTime', event['end'].get('date')))
 
+    diff = EventEnd - EventStart
+
     data = {
         'summary'       : event['summary'] if 'summary' in event else '',
-        'location'      : event['location'] if 'location' in event else '',
+        'location'      : u'{}...'.format(event['location'][:(S.StringLengthLimit - 3)]) if 'location' in event else '',
         'description'   : event['description'] if 'description' in event else '',
         'startDate'     : EventStart.strftime('%Y-%m-%d'),
         'startTime'     : EventStart.strftime('%H:%M'),
         'endDate'       : EventEnd.strftime('%Y-%m-%d'),
         'endTime'       : EventEnd.strftime('%H:%M'),
-        'allDay'        : True if 'date' in event['start'] else False,
-        'multipleDays'  : False if EventStart.strftime('%Y-%m-%d') == EventEnd.strftime('%Y-%m-%d') else True
+        'allDay'        : True if 'date' in event['start'] and diff.days == 1 else False,
+        'multipleDays'  : False if EventStart.strftime('%Y-%m-%d') == EventEnd.strftime('%Y-%m-%d') or ('date' in event['start'] and diff.days == 1) else True
     }
 
     postMessage(index, data, S.TrimmedHostAndPort)
