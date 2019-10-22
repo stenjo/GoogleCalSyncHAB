@@ -2,8 +2,8 @@ import configparser
 import os
 
 ApplicationDir = os.path.dirname(os.path.abspath(__file__))
-# HomeDir = os.path.expanduser('~')
-# CredentialDir = os.path.join(HomeDir, '.credentials')
+HomeDir = os.path.expanduser('~')
+CredentialDir = os.path.join(HomeDir, '.credentials')
 
 # if not os.path.exists(CredentialDir):
 #     os.makedirs(CredentialDir)
